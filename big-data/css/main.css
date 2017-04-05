@@ -1,0 +1,20 @@
+body {
+	text-align: center;
+}
+
+p {
+    font-size: 12;
+}
+
+.my_paragraphs {
+    background-color: #1d1230;
+}
+
+#foo {
+    color: #ff0000;
+}
+
+#bar {
+    color: white;
+    background-color: red;
+}
