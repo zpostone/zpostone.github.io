@@ -1,16 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"> 
-    <title>Hello World</title>
-</head>
-<body>
-    <h1>Zach Postone</h1>
-    <h2>11.S943 - Big Data, Visualization & Society</h2>
-    <p>Hello, I am a graduate student in MIT’s Department of Urban Studies and Planning. I'm interested in opportunities to bridge visualization and interaction design with the physical design disciplines.</p>
-    <p> My recent projects include mapping evictions in Boston and developing urban design strategies for high-vacancy areas in the outskirts of Mexico City. I studied Political Science at Swarthmore College, and have previously worked with design and urbanism organizations including Van Alen Institute, The Center for Urban Pedagogy, Architizer, and Local Projects.</p>
 
-    <p>I'm currently inspired by: <a href="http://legislativeexplorer.org/" target="_blank">Legislative Explorer</a></p>
-    <img src="http://cappp.org/wordpress/wp-content/uploads/2014/04/screen3.png" width="800">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Vouchers and Votes</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!-- EXTRA BOOTSTRAP CODE
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    -->
+
+    <!-- Theme CSS -->
+    <!--<link href="css/creative.min.css" rel="stylesheet"> -->
+    <link href="css/creative.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Add D3 -->
+    <script src="https://d3js.org/d3.v4.js" charset="utf-8"></script>
+
+    <!-- CSS3 Carousel -->
+    <link rel="stylesheet" href="css/gallery.theme.css">
+    <link rel="stylesheet" href="css/gallery.css">
+
+</head>
+
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Vouchers and Votes</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#slides">Presentation</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#progress">Progress</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#graphics">Graphics</a>
+                    </li>
+                    <!-- EXTRA BOOTSTRAP CODE
+                    <li>
+                        <a class="page-scroll" href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#portfolio">Portfolio</a>
+                    </li>
+                    -->
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading">Vouchers and Votes<br/>in the Keystone State</h1>
+                <br/><br/>
+                <p>Project Team: Jonathan Tarleton and Zach Postone</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">Learn More</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h1 class="section-heading">About This Project</h1>
+                    <p class="text-faded">Housing Choice Vouchers are the dominant form of federal housing assistance for families struggling to meet their rent, but only 74% of eligible Pennsylvanians receive one. We’re exploring the spatial distribution of voucher holders across Pennsylvania, what parts of the state have the most unmet need, where might be hit hardest by cuts under Trump’s proposed budget, and how that relates to the Pennsylvanians who turned the battleground state red in 2018.</p>
+                    <p>This project is part of 11.S43 Big Data, Visualization, and Society at MIT. This semester, we are looking at housing and the 2016 presidential election, and how affordable housing policies may be shaped under the new administration.
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<section id="slides" class="col-lg-8 col-lg-offset-2 text-center">
+<h1 class="section-heading">Midterm Presentation</h1>
+<p class="text-faded">This interim presentation explains our initial research question and early graphic ideas.</p>
+
+<div class="img-center">
+<img class="mySlides" src="img/slides/01.jpg">
+<img class="mySlides" src="img/slides/02.jpg">
+<img class="mySlides" src="img/slides/03.jpg">
+<img class="mySlides" src="img/slides/04.jpg">
+<img class="mySlides" src="img/slides/05.jpg">
+<img class="mySlides" src="img/slides/06.jpg">
+<img class="mySlides" src="img/slides/07.jpg">
+<img class="mySlides" src="img/slides/08.jpg">
+<img class="mySlides" src="img/slides/09.jpg">
+<img class="mySlides" src="img/slides/10.jpg">
+<img class="mySlides" src="img/slides/11.jpg">
+<img class="mySlides" src="img/slides/12.jpg">
+<img class="mySlides" src="img/slides/13.jpg">
+<img class="mySlides" src="img/slides/14.jpg">
+<img class="mySlides" src="img/slides/15.jpg">
+<img class="mySlides" src="img/slides/16.jpg">
+<img class="mySlides" src="img/slides/17.jpg">
+<img class="mySlides" src="img/slides/18.jpg">
+<img class="mySlides" src="img/slides/19.jpg">
+<img class="mySlides" src="img/slides/20.jpg">
+<img class="mySlides" src="img/slides/21.jpg">
+<img class="mySlides" src="img/slides/22.jpg">
+<img class="mySlides" src="img/slides/23.jpg">
+<img class="mySlides" src="img/slides/24.jpg">
+<img class="mySlides" src="img/slides/25.jpg">
+<img class="mySlides" src="img/slides/26.jpg">
+<img class="mySlides" src="img/slides/27.jpg">
+</div>
+<br/>
+<button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+<button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+    showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1} 
+    if (n < 1) {slideIndex = x.length} ;
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none"; 
+    }
+    x[slideIndex-1].style.display = "block"; 
+}
+</script>
+</section>
+
+<section id="progress">
+<div class="col-lg-8 col-lg-offset-2 text-center">
+<h1 class="section-heading">Preliminary Visualizations</h1>
+<p class="text-faded">We are in the process of calculating the necessary data points for our project, using sources from HUD, the U.S. Census, as well as methodologies developed by the <a href="http://www.cbpp.org">Center on Budget and Policy Priorities</a>. We are gathering the data in Dropbox and processing it in Python and ArcGIS. Below are preliminary charts and maps showing our data sets.
+</p>
+<div class="img-center">
+<img src="img/FMRs.png">
+<br /><br />
+<img src="img/HCVFamilies_PHA.png">
+<br /><br />
+<img src="img/HCVS_Per_Capita.png">
+<br /><br />
+</div>
+
+<h1 class="section-heading">D3 Example</h1>
+<p class="text-faded">This is a D3 sample code we implemented on our page. It is the first step in using <a href="https://github.com/topojson/us-atlas">U.S. Atlas TopoJSON</a> to represent counties and tracts in Pennsylvania. </p>
+
+<!--from https://github.com/topojson/us-atlas -->
+<svg width="960" height="600" fill="none" stroke="#000" stroke-linejoin="round" stroke-linecap="round"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/topojson-client@3"></script>
+<script>
+
+var svg = d3.select("svg");
+
+var path = d3.geoPath();
+
+d3.json("https://unpkg.com/us-atlas@1/us/10m.json", function(error, us) {
+  if (error) throw error;
+
+  svg.append("path")
+      .attr("stroke", "#aaa")
+      .attr("stroke-width", 0.5)
+      .attr("d", path(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && (a.id / 1000 | 0) === (b.id / 1000 | 0); })));
+
+  svg.append("path")
+      .attr("stroke-width", 0.5)
+      .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
+
+  svg.append("path")
+      .attr("d", path(topojson.feature(us, us.objects.nation)));
+});
+</script>
+</div>
+
+
+<div class="col-lg-8 col-lg-offset-2 text-center">
+<br/><br/>
+<p class="text-faded">And here is another D3 test&mdash;not necessarily to be included in our project&mdash;using <a href="https://bl.ocks.org/mbostock/f48fcdb929a620ed97877e4678ab15e6">Brush & Zoom II</a>. Double-click or double-tap to zoom out.
+<svg id="svg2" width="960" height="600" fill="none" stroke="#000" stroke-linejoin="round" stroke-linecap="round"></svg>
+<script>
+
+var random = d3.randomNormal(0, 0.2),
+    sqrt3 = Math.sqrt(3),
+    points0 = d3.range(300).map(function() { return [random() + sqrt3, random() + 1, 0]; }),
+    points1 = d3.range(300).map(function() { return [random() - sqrt3, random() + 1, 1]; }),
+    points2 = d3.range(300).map(function() { return [random(), random() - 1, 2]; }),
+    points = d3.merge([points0, points1, points2]);
+
+var svg2 = d3.select("#svg2"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+var k = height / width,
+    x0 = [-4.5, 4.5],
+    y0 = [-4.5 * k, 4.5 * k],
+    x = d3.scaleLinear().domain(x0).range([0, width]),
+    y = d3.scaleLinear().domain(y0).range([height, 0]),
+    z = d3.scaleOrdinal(d3.schemeCategory10);
+
+var xAxis = d3.axisTop(x).ticks(12),
+    yAxis = d3.axisRight(y).ticks(12 * height / width);
+
+var brush = d3.brush().on("end", brushended),
+    idleTimeout,
+    idleDelay = 350;
+
+svg2.selectAll("circle")
+  .data(points)
+  .enter().append("circle")
+    .attr("cx", function(d) { return x(d[0]); })
+    .attr("cy", function(d) { return y(d[1]); })
+    .attr("r", 2.5)
+    .attr("fill", function(d) { return z(d[2]); });
+
+svg2.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + (height - 10) + ")")
+    .call(xAxis);
+
+svg2.append("g")
+    .attr("class", "axis axis--y")
+    .attr("transform", "translate(10,0)")
+    .call(yAxis);
+
+svg2.selectAll(".domain")
+    .style("display", "none");
+
+svg2.append("g")
+    .attr("class", "brush")
+    .call(brush);
+
+function brushended() {
+  var s = d3.event.selection;
+  if (!s) {
+    if (!idleTimeout) return idleTimeout = setTimeout(idled, idleDelay);
+    x.domain(x0);
+    y.domain(y0);
+  } else {
+    x.domain([s[0][0], s[1][0]].map(x.invert, x));
+    y.domain([s[1][1], s[0][1]].map(y.invert, y));
+    svg2.select(".brush").call(brush.move, null);
+  }
+  zoom();
+}
+
+function idled() {
+  idleTimeout = null;
+}
+
+function zoom() {
+  var t = svg.transition().duration(750);
+  svg2.select(".axis--x").transition(t).call(xAxis);
+  svg2.select(".axis--y").transition(t).call(yAxis);
+  svg2.selectAll("circle").transition(t)
+      .attr("cx", function(d) { return x(d[0]); })
+      .attr("cy", function(d) { return y(d[1]); });
+}
+
+</script>
+</div>
+
+</section>
+
+<section id="graphics" class="col-lg-8 col-lg-offset-2">
+<h1 class="section-heading text-center">Graphics</h1>
+<p class="text-faded text-center">We are developing our graphic language and will continue to adjust it along with our mock-ups. Below are preliminary graphic standards.</p>
+<h1>Heading 123456789</h1>
+<h2>Sub-Heading</h2>
+<p class="btn btn-primary">Tag/button</p><br/><br/>
+<p class="text-faded">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <a href="http://www.google.com">Hyperlink</a></p>
+<p style="font-family:Droid Sans Mono; font-weight:300;font-color:darkgrey; font-size:10px">Caption: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+<svg width="160" height="180">
+        <rect x="5" width="20" height="20" fill="#ffffb2"></rect>
+        <rect x="30" width="20" height="20" fill="#fecc5c"></rect>
+        <rect x="55" width="20" height="20" fill="#fd8d3c"></rect>
+        <rect x="80" width="20" height="20" fill="#f03b20"></rect>
+        <rect x="105" width="20" height="20" fill="#bd0026"></rect>
+
+</svg>
+<svg width="160" height="180">
+        <rect x="5" width="20" height="20" fill="#f0f9e8"></rect>
+        <rect x="30" width="20" height="20" fill="#bae4bc"></rect>
+        <rect x="55" width="20" height="20" fill="#7bccc4"></rect>
+        <rect x="80" width="20" height="20" fill="#43a2ca"></rect>
+        <rect x="105" width="20" height="20" fill="#0868ac"></rect>
+
+</svg>
+</section>
+
+<!-- EXTRA BOOTSTRAP CODE
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">At Your Service</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+                        <h3>Sturdy Templates</h3>
+                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+                        <h3>Ready to Ship</h3>
+                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                        <h3>Up to Date</h3>
+                        <p class="text-muted">We update dependencies to keep things fresh.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
+                        <h3>Made with Love</h3>
+                        <p class="text-muted">You have to make your websites with love these days!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="no-padding" id="portfolio">
+        <div class="container-fluid">
+            <div class="row no-gutter popup-gallery">
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/1.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/2.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/3.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/4.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/5.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/6.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>Free Download at Start Bootstrap!</h2>
+                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>
+            </div>
+        </div>
+    </aside>
+-->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h1 class="section-heading">Contact</h1>
+                    <hr class="primary">
+                    <p>For more information about this project, contact us by email.</p>
+                </div>
+                <!--<div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x sr-contact"></i>
+                    <p>123-456-6789</p>
+                </div>
+                -->
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                    <p><a href="mailto:zpostone@mit.edu">Zach Postone</a><br/><a href="mailto:jtar@mit.edu">Jonathan Tarleton</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+
+
+    <!-- Theme JavaScript -->
+    <script src="js/creative.min.js"></script>
+
 </body>
+
 </html>
