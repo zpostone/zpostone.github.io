@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<style type='text/css'>
+  body {
+    font-family: 'Helvetica';
+  }
+  .states {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+  }
+
+  .candidate {
+    font-size: 70%;
+    color: #777;
+  }
+
+  .my-legend .legend-title {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 90%;
+    color:grey;
+    }
+  .my-legend .legend-scale ul {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    }
+  .my-legend .legend-scale ul li {
+    display: block;
+    float: left;
+    width: 50px;
+    margin-bottom: 6px;
+    text-align: center;
+    font-size: 80%;
+    list-style: none;
+    }
+  .my-legend ul.legend-labels li span {
+    display: block;
+    float: left;
+    height: 15px;
+    width: 50px;
+    }
+  .source {
+    font-size: 70%;
+    color: #777;
+    clear: both;
+    }
+  .my-legend a {
+    color: #777;
+    }
+
+  #main {
+  width: 960px;
+  }
+
+  .axis .domain {
+  display: none;
+  }
+
+</style>
+</head>
+<body>
+<h2>Part 1</h2>
+<div style="text-align:center">
+<h3> 2016 General Election - Margin of Victory by County</h3>
+</div>
+
+<div class='my-legend'>
+<div class='legend-title'>Percentage Points</div>
+<div style="margin:auto; width:400px">
+<div class='candidate' style="width:50%; text-align:left; display:inline-block">Clinton</div><div class='candidate' style="width:50%; text-align:right; display:inline-block">Trump</div>
+
+<div class='legend-scale'>
+  <ul class='legend-labels'>
+    <li><span style='background:#2166ac;'></span>> 50%</li>
+    <li><span style='background:#4393c3;'></span>25%</li>
+    <li><span style='background:#92c5de;'></span>10%</li>
+    <li><span style='background:#d1e5f0;'></span>< 10%</li>
+    <li><span style='background:#fddbc7;'></span>< 10%</li>
+    <li><span style='background:#f4a582;'></span>10%</li>
+    <li><span style='background:#d6604d;'></span>25%</li>
+    <li><span style='background:#b2182b;'></span>> 50%</li>
+  </ul>
+</div>
+</div>
+</div>
+
+
+<div id="map" style="position:relative; margin:auto; width:960px">
+</div>
+<p class="source" style="text-align:center">Source: <a href="http://townhall.com">Townhall.com</a></p>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-array.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo.v1.min.js"></script>
+<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+<script>
+// set width and height of graphic
+var width = 960,
+    height = 500;
+
+var projection = d3.geoAlbersUsa()
+    .scale(1000)
+    .translate([width / 2, height / 2]);
+
+// d3 geopath for projection
+var path = d3.geoPath()
+    .projection(projection);
+
+// create SVG elements in map HTML element
+var svg = d3.select("#map").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+// set color
+var color = d3.scaleThreshold()
+    .domain([-.5, -.25, -.1, 0, .1, .25, .5])
+    .range(["#2166ac", "#4393c3", "#92c5de", "#d1e5f0", "#fddbc7", "#f4a582", "#d6604d", "#b2182b"]);
+
+// queue up the datasets, run 'ready' when loaded
+d3.queue()
+    .defer(d3.json, "us.json")
+    .defer(d3.tsv, "election2016county.tsv")
+    .await(ready);
+
+// create the graphic with this function
+function ready(error, us, election2016county) {
+  if (error) throw error;
+
+  var marginByCounty = {}; // Create empty object for holding dataset
+ election2016county.forEach(function(d) {
+    marginByCounty[d.id] = +d.victory_margin; // Create property for each ID, give it value from rate
+    // important: cast rate to numeric value (+)
+  });
+  console.log(marginByCounty);
+  
+  // create and style counties
+  svg.append("g")
+      .attr("class", "counties")
+    .selectAll("path")
+      .data(topojson.feature(us, us.objects.counties).features)
+    .enter().append("path")
+      .attr("d", path)
+      .style("fill", function(d) { return color(marginByCounty[d.id]); });
+
+  // create state outlines
+  svg.append("path")
+      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a.id !== b.id; }))
+      .attr("class", "states")
+      .attr("d", path);
+}
+</script>
+<h2>Part 2</h2>
+<div style="text-align:center">
+<h3> 2016 General Election - Number of Votes by State</h3>
+</div>
+<div id="main" style="margin:auto">
+<svg id="svg2" width="960" height="500"></svg>
+</div>
+<p class="source" style="text-align:center">Source: <a href="http://townhall.com">Townhall.com</a></p>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+// create the svg
+var svg2 = d3.select("#svg2"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg2.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// set x scale
+var x = d3.scaleBand()
+    .rangeRound([0, width])
+    .paddingInner(0.05)
+    .align(0.1);
+
+// set y scale
+var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
+
+// set the colors
+var z = d3.scaleOrdinal()
+    .range(["#4393c3", "#d6604d", "lightgrey"]);
+
+// load the csv and create the chart
+d3.csv("election_2016_state_results.csv", function(d, i, columns) {
+  for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
+  d.total = t;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
+
+  var keys = data.columns.slice(1);
+
+  data.sort(function(a, b) { return b.total - a.total; });
+  x.domain(data.map(function(d) { return d.State; }));
+  y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
+  z.domain(keys);
+
+  g.append("g")
+    .selectAll("g")
+    .data(d3.stack().keys(keys)(data))
+    .enter().append("g")
+      .attr("fill", function(d) { return z(d.key); })
+    .selectAll("rect")
+    .data(function(d) { return d; })
+    .enter().append("rect")
+      .attr("x", function(d) { return x(d.data.State); })
+      .attr("y", function(d) { return y(d[1]); })
+      .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+      .attr("width", x.bandwidth())
+    .on("mouseover", function() { tooltip.style("display", null); })
+    .on("mouseout", function() { tooltip.style("display", "none"); })
+    .on("mousemove", function(d) {
+      console.log(d);
+      var xPosition = d3.mouse(this)[0] - 5;
+      var yPosition = d3.mouse(this)[1] - 5;
+      tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+      tooltip.select("text").text(d[1]-d[0]);
+    });
+
+  g.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  g.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(y).ticks(null, "s"))
+    .append("text")
+      .attr("x", 2)
+      .attr("y", y(y.ticks().pop()) + 0.5)
+      .attr("dy", "0.32em")
+      //.attr("fill", "#000")
+      //.attr("font-weight", "bold")
+      .attr("text-anchor", "start");
+
+  var legend = g.append("g")
+      .attr("text-anchor", "end")
+    .selectAll("g")
+    .data(keys.slice().reverse())
+    .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 19)
+      .attr("width", 19)
+      .attr("height", 19)
+      .attr("fill", z);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9.5)
+      .attr("class", "source")
+      .attr("dy", "0.32em")
+      .text(function(d) { return d; });
+});
+
+  // Prep the tooltip bits, initial display is hidden
+  var tooltip = svg2.append("g")
+    .attr("class", "tooltip")
+    .style("display", "none");
+      
+  tooltip.append("rect")
+    .attr("width", 60)
+    .attr("height", 20)
+    .attr("fill", "white")
+    .style("opacity", 0.5);
+
+  tooltip.append("text")
+    .attr("x", 30)
+    .attr("dy", "1.2em")
+    .style("text-anchor", "middle")
+    .attr("font-size", "12px")
+    .attr("font-weight", "bold");
+
+</script>
+
+</body>
